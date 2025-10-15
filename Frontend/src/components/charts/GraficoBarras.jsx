@@ -21,7 +21,7 @@ export default function GraficoBarras() {
   useEffect(() => {
     const fetchCursos = async () => {
       try {
-        const response = await fetch('http://localhost:5001/cursos');
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/cursos`);
         if (!response.ok) {
           throw new Error('Erro ao buscar dados dos cursos');
         }

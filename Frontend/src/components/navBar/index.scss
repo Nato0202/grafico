@@ -2,19 +2,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    padding: 0 20px;
 
     font-family: Arial, Helvetica, sans-serif;
     color: white;
 
     width: 100%;
     height: max-content;
-    background-color: rgba(32, 183, 237);
-    border-bottom: 2px solid rgb(206, 206, 206);
+    background: linear-gradient(135deg, rgba(32, 183, 237, 0.9), rgba(0, 123, 255, 0.9));
+    border-bottom: 2px solid rgba(206, 206, 206, 0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
     .img{
         width: max-content;
         height: max-content;
-        margin: 15px 0 15px 15px;
+        margin: 15px 0 15px 0;
         padding: 5px;
         border-radius: 15px;
         background-color: white;
@@ -22,41 +25,96 @@
 
         &:hover{
             transform: scale(107%);
-            box-shadow: 1px 1px 3px 2px rgba( 50, 50, 50, 0.5);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+
         .navBar-img{
             margin: 0;
-            height: 150px;
-            width: 125px;
+            height: 120px;
+            width: 100px;
         }
     }
 
     .title{
         font-family: Arial, Helvetica, sans-serif;
         color: white;
+        font-size: 1rem;
+        font-weight: 600;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     .options{
-        width: 340px;
-
         display: flex;
-        justify-content: space-between;
-
-        margin: 0 15px 0 -100px;
+        justify-content: center;
+        margin: 0;
         padding: 0;
-
-        font-size:20px;
+        font-size: 18px;
+        gap: 20px;
 
         .Link{
             text-decoration: none;
             color: white;
-            padding: 2px;
-            border-radius: 7px;
+            padding: 12px 25px;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            border-radius: 30px;
             transition: all 0.3s ease-in-out;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 
             &:hover{
-                background-color: rgb(30, 167, 218);
-                transform: scale(120%);
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15));
+                transform: translateY(-3px) scale(1.05);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                border-color: rgba(255, 255, 255, 0.8);
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        height: auto;
+
+        .img{
+            margin: 10px auto;
+        }
+
+        .title{
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .options{
+            width: 100%;
+            margin: 10px 0;
+            justify-content: center;
+            gap: 20px;
+
+            .Link{
+                font-size: 18px;
+                padding: 6px 10px;
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        .title{
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        .options{
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+
+            .Link{
+                width: 200px;
+                text-align: center;
+                font-size: 1rem;
+                padding: 8px 15px;
             }
         }
     }
