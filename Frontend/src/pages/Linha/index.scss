@@ -1,0 +1,23 @@
+.Home{
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    .main{
+        margin: 0;
+        padding: 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        h1{
+            padding: 10px;
+            border: 1px solid rgb(180, 180, 180);
+            background-color: rgb(196, 196, 196);
+            box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.5);
+        }
+    }
+}
