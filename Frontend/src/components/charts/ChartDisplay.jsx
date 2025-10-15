@@ -23,7 +23,7 @@ export default function ChartDisplay({ dataType, chartType }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const endpoint = dataType === 'cursos' ? '/data/cursos.json' : '/data/agendamentos.json';
+        const endpoint = dataType === 'cursos' ? 'https://api.vestibular-insf.com.br/api/enrollments/count-by-course-period?password=r%26p0rts' : 'https://api.vestibular-insf.com.br/api/appointments/count-by-date?password=r%26p0rts';
         const response = await fetch(endpoint);
         if (!response.ok) {
           throw new Error(`Erro ao buscar dados dos ${dataType}`);
@@ -31,7 +31,20 @@ export default function ChartDisplay({ dataType, chartType }) {
         const result = await response.json();
         setData(result);
       } catch (err) {
-        setError(err.message);
+        console.error('Erro na API, usando dados locais:', err);
+        // Fallback para dados locais
+        const localEndpoint = dataType === 'cursos' ? '/data/cursos.json' : '/data/agendamentos.json';
+        try {
+          const localResponse = await fetch(localEndpoint);
+          if (localResponse.ok) {
+            const localResult = await localResponse.json();
+            setData(localResult);
+          } else {
+            setError('Erro ao carregar dados locais');
+          }
+        } catch {
+          setError('Erro ao carregar dados');
+        }
       } finally {
         setLoading(false);
       }
@@ -43,16 +56,18 @@ export default function ChartDisplay({ dataType, chartType }) {
   if (loading) return <div>Carregando...</div>;
   if (error) return <div>Erro: {error}</div>;
 
+  if (!data || data.length === 0) return <div>Nenhum dado disponível</div>;
+
   let labels, valores, title, label;
 
   if (dataType === 'cursos') {
-    labels = data.map(item => `${item._id.courseName} (${item._id.periodName})`);
-    valores = data.map(item => item.totalInscritos);
+    labels = data.map(item => item._id && item._id.courseName ? `${item._id.courseName} (${item._id.periodName})` : 'Dados inválidos');
+    valores = data.map(item => item.totalInscritos || 0);
     title = "Inscritos por Curso e Período";
     label = "Total de Inscritos";
   } else {
-    labels = data.map((item) => item._id);
-    valores = data.map((item) => item.totalAgendamentos);
+    labels = data.map((item) => item._id || 'Dados inválidos');
+    valores = data.map((item) => item.totalAgendamentos || 0);
     title = "Agendamentos por Dia";
     label = "Total de Agendamentos";
   }
