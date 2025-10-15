@@ -29,6 +29,7 @@ export default function ChartDisplay({ dataType, chartType }) {
           throw new Error(`Erro ao buscar dados dos ${dataType}`);
         }
         const result = await response.json();
+        // console.log('Data fetched from API:', result);
         setData(result);
       } catch (err) {
         console.error('Erro na API:', err);
@@ -49,12 +50,12 @@ export default function ChartDisplay({ dataType, chartType }) {
   let labels, valores, title, label;
 
   if (dataType === 'cursos') {
-    labels = data.map(item => item._id && item._id.courseName ? `${item._id.courseName} (${item._id.periodName})` : 'Dados inválidos');
+    labels = data.map(item => item.courseName ? `${item.courseName} (${item.periodName})` : 'Dados inválidos');
     valores = data.map(item => item.totalInscritos || 0);
     title = "Inscritos por Curso e Período";
     label = "Total de Inscritos";
   } else {
-    labels = data.map((item) => item._id || 'Dados inválidos');
+    labels = data.map((item) => item.date || 'Dados inválidos');
     valores = data.map((item) => item.totalAgendamentos || 0);
     title = "Agendamentos por Dia";
     label = "Total de Agendamentos";
