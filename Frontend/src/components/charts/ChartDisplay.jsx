@@ -23,8 +23,8 @@ export default function ChartDisplay({ dataType, chartType }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const endpoint = dataType === 'cursos' ? '/cursos' : '/agendamentos';
-        const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`);
+        const endpoint = dataType === 'cursos' ? '/data/cursos.json' : '/data/agendamentos.json';
+        const response = await fetch(endpoint);
         if (!response.ok) {
           throw new Error(`Erro ao buscar dados dos ${dataType}`);
         }
@@ -46,13 +46,13 @@ export default function ChartDisplay({ dataType, chartType }) {
   let labels, valores, title, label;
 
   if (dataType === 'cursos') {
-    labels = data.map(item => `${item.course_name} (${item.period_name})`);
-    valores = data.map(item => item.total_inscritos);
+    labels = data.map(item => `${item._id.courseName} (${item._id.periodName})`);
+    valores = data.map(item => item.totalInscritos);
     title = "Inscritos por Curso e Período";
     label = "Total de Inscritos";
   } else {
-    labels = data.map((item) => new Date(item.data_agendamento).toLocaleDateString('pt-BR'));
-    valores = data.map((item) => item.total_agendamentos);
+    labels = data.map((item) => item._id);
+    valores = data.map((item) => item.totalAgendamentos);
     title = "Agendamentos por Dia";
     label = "Total de Agendamentos";
   }
