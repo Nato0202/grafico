@@ -73,6 +73,7 @@ export default function ChartDisplay({ dataType, chartType }) {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: { position: "top" },
       title: { display: true, text: title },
@@ -85,7 +86,13 @@ export default function ChartDisplay({ dataType, chartType }) {
       }
     },
     scales: {
-      x: { ticks: { font: { size: 10 } } },
+      x: {
+        ticks: {
+          font: { size: 10 },
+          maxRotation: 90,
+          minRotation: 90
+        }
+      },
       y: {
         beginAtZero: true,
         ticks: {

@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.scss'
 import Linha from './pages/Linha/linha.jsx'
 import Barra from './pages/Barra/barra.jsx'
-import Home from './pages/Home/home.jsx'
+import Home from './pages/home/home.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>

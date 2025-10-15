@@ -16,7 +16,7 @@
 
   canvas {
     max-width: 100%;
-    height: auto !important;
+    height: 400px !important;
   }
 }
 
@@ -34,10 +34,12 @@
 
 @media (max-width: 480px) {
   .chart-container {
-    margin: 15px 5px;
+    margin: 15px 0;
     padding: 10px;
+    max-width: 100%;
 
     canvas {
+      width: 100% !important;
       height: 200px !important;
     }
   }
