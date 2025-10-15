@@ -31,20 +31,8 @@ export default function ChartDisplay({ dataType, chartType }) {
         const result = await response.json();
         setData(result);
       } catch (err) {
-        console.error('Erro na API, usando dados locais:', err);
-        // Fallback para dados locais
-        const localEndpoint = dataType === 'cursos' ? '/data/cursos.json' : '/data/agendamentos.json';
-        try {
-          const localResponse = await fetch(localEndpoint);
-          if (localResponse.ok) {
-            const localResult = await localResponse.json();
-            setData(localResult);
-          } else {
-            setError('Erro ao carregar dados locais');
-          }
-        } catch {
-          setError('Erro ao carregar dados');
-        }
+        console.error('Erro na API:', err);
+        setError('Erro ao carregar dados da API');
       } finally {
         setLoading(false);
       }
