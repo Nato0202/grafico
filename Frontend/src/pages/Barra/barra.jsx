@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Footer from '../../components/footer/footer.jsx';
 import NavBar from '../../components/navBar/navBar.jsx';
 import ChartDisplay from '../../components/charts/ChartDisplay.jsx';
@@ -6,21 +6,15 @@ import ChartDisplay from '../../components/charts/ChartDisplay.jsx';
 import './index.scss'
 
 function Barra() {
-  const [dataType, setDataType] = useState('cursos');
-
   return (
     <>
       <div className="Home">
         <NavBar />
 
         <div className="main">
-          <h1>Gráfico de Barras</h1>
-          <div className="buttons">
-            <button onClick={() => setDataType('cursos')} className={dataType === 'cursos' ? 'active' : ''}>Cursos</button>
-            <button onClick={() => setDataType('agendamentos')} className={dataType === 'agendamentos' ? 'active' : ''}>Agendamentos</button>
-          </div>
+          <h1>Gráfico de Cursos</h1>
           <div className="graphic">
-            <ChartDisplay dataType={dataType} chartType="bar" />
+            <ChartDisplay dataType="cursos" chartType="bar" />
           </div>
 
         </div>

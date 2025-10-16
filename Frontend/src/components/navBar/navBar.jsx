@@ -11,8 +11,8 @@ export default function NavBar() {
                 <h1>Inscrições Instituto Social Nossa Senhora de Fátima 2026</h1>
             </div>
             <div className="options">
-                <Link className='Link' to="/Grafico_Linha">Gráfico de Linha</Link>
-                <Link className='Link' to="/Grafico_Barra">Gráfico de Barras</Link>
+                <Link className='Link' to="/Grafico_Linha">Agendamentos</Link>
+                <Link className='Link' to="/Grafico_Barra">Cursos</Link>
             </div>
         </div>
     )

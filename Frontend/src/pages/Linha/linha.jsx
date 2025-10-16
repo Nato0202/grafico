@@ -5,7 +5,11 @@ import ChartDisplay from '../../components/charts/ChartDisplay.jsx';
 import './index.scss'
 
 function Linha() {
-  const [dataType, setDataType] = useState('agendamentos');
+  const [chartType, setChartType] = useState('line');
+
+  const toggleChartType = () => {
+    setChartType(chartType === 'line' ? 'bar' : 'line');
+  };
 
   return (
     <>
@@ -13,13 +17,14 @@ function Linha() {
         <NavBar />
 
         <div className="main">
-          <h1>Gráfico de Linha</h1>
+          <h1>Gráfico de {chartType === 'line' ? 'Linha' : 'Barras'} - Agendamentos</h1>
           <div className="buttons">
-            <button onClick={() => setDataType('cursos')} className={dataType === 'cursos' ? 'active' : ''}>Cursos</button>
-            <button onClick={() => setDataType('agendamentos')} className={dataType === 'agendamentos' ? 'active' : ''}>Agendamentos</button>
+            <button onClick={toggleChartType} className="active">
+              {chartType === 'line' ? 'Alterar para Barras' : 'Alterar para Linha'}
+            </button>
           </div>
           <div className="graphic">
-            <ChartDisplay dataType={dataType} chartType="line" />
+            <ChartDisplay dataType="agendamentos" chartType={chartType} />
           </div>
 
         </div>
