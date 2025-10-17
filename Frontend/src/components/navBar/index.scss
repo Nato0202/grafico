@@ -2,7 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+
     padding: 0 20px;
 
     font-family: Arial, Helvetica, sans-serif;
@@ -14,49 +15,57 @@
     border-bottom: 2px solid rgba(206, 206, 206, 0.5);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    .img{
-        width: max-content;
-        height: max-content;
-        margin: 15px 0 15px 0;
-        padding: 5px;
-        border-radius: 15px;
-        background-color: white;
-        transition: all 0.3s ease-in-out;
+    .jojoM{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 100px;
 
-        &:hover{
-            transform: scale(107%);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        .img{
+            width: max-content;
+            height: max-content;
+            margin: 15px 0 15px 0;
+            padding: 5px;
+            border-radius: 15px;
+            background-color: white;
+            transition: all 0.3s ease-in-out;
+    
+            &:hover{
+                transform: scale(107%);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+    
+            .navBar-img{
+                margin: 0;
+                height: 120px;
+                width: 100px;
+            }
         }
-
-        .navBar-img{
-            margin: 0;
-            height: 120px;
-            width: 100px;
+    
+        .title{
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
-    }
-
-    .title{
-        font-family: Arial, Helvetica, sans-serif;
-        color: white;
-        font-size: 1rem;
-        font-weight: 600;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     .options{
         display: flex;
         justify-content: center;
-        margin: 0;
+        margin: -25px 0 15px 0;
         padding: 0;
         font-size: 18px;
         gap: 20px;
-
+        
         .Link{
             text-decoration: none;
             color: white;
             padding: 12px 25px;
             border: 3px solid rgba(255, 255, 255, 0.5);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            background-color:rgb(73, 180, 252) ;
+            
             border-radius: 30px;
             transition: all 0.3s ease-in-out;
             font-weight: 700;

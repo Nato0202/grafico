@@ -61,25 +61,50 @@ export default function ChartDisplay({ dataType, chartType }) {
     label = "Total de Agendamentos";
   }
 
+  // Função pra definir cor com base no nome do curso
+  const getCourseColor = (courseName) => {
+    const name = courseName.toLowerCase();
+  
+    if (name.includes("administração")) return "rgba(255, 159, 64, 0.8)"; // laranja
+    if (name.includes("informática")) return "rgba(54, 162, 235, 0.8)"; // azul
+    if (name.includes("comunicação visual")) return "rgba(255, 20, 147, 0.8)"; // rosa choque
+    if (name.includes("automação residencial")) return "rgba(90, 185, 100, 0.8)"
+    if (name.includes("eletricista")) return "rgba(255, 206, 86, 0.8)"; // amarelo
+    if (name.includes("eletromecânica") || name.includes("eletromecanica")) return "rgba(40, 40, 40, 0.9)"; // cinza muito escuro
+    if (name.includes("inglês básico") || name.includes("ingles basico")) return "rgba(255, 0, 255, 0.8)"; // magenta
+    if (name.includes("pré intermediário") || name.includes("pre intermediario")) return "rgba(153, 102, 255, 0.8)"; // roxo
+    if (name.includes("avançado") || name.includes("intermediário")) return "rgba(75, 0, 130, 0.8)" // roxo mais escuro 
+    if (name.includes("inglês teens ii")) return "rgba(139, 0, 0, 0.8)"; // vermelho mais escuro
+    if (name.includes("inglês teens i")) return "rgba(255, 0, 0, 0.8)"; // vermelho
+
+  
+    return "rgba(201, 203, 207, 0.7)"; // fallback cinzinha
+  };
+
   const chartData = {
     labels,
     datasets: [
       {
         label,
         data: valores,
-        backgroundColor: chartType === 'bar' ? "rgba(54, 162, 235, 0.5)" : "rgba(75, 192, 192, 0.2)",
-        borderColor: chartType === 'bar' ? "rgb(54, 162, 235)" : "rgb(75, 192, 192)",
-        borderWidth: chartType === 'bar' ? 1 : undefined,
-        tension: chartType === 'line' ? 0.3 : undefined,
-      }
-    ]
+        backgroundColor:
+          dataType === "cursos"
+            ? data.map((item) => getCourseColor(item.courseName))
+            : "rgba(75, 192, 192, 0.2)",
+        borderColor:
+          dataType === "cursos"
+            ? data.map((item) => getCourseColor(item.courseName).replace("0.7", "1"))
+            : "rgb(75, 192, 192)",
+        borderWidth: 1,
+      },
+    ],
   };
 
   const options = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { position: "top" },
+      legend: { position: "top", },
       title: { display: true, text: title },
       tooltip: {
         callbacks: {
