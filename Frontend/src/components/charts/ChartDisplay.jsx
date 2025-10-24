@@ -53,13 +53,15 @@ export default function ChartDisplay({ dataType, chartType }) {
     labels = data.map(item => item.courseName ? `${item.courseName} (${item.periodName})` : 'Dados inválidos');
     valores = data.map(item => item.totalInscritos || 0);
     title = "Inscritos por Curso e Período";
-    label = "Total de Inscritos";
+    label = `Inscritos`;
   } else {
     labels = data.map((item) => item.date || 'Dados inválidos');
     valores = data.map((item) => item.totalAgendamentos || 0);
     title = "Agendamentos por Dia";
     label = "Total de Agendamentos";
   }
+
+  const InscritosTotais = valores.reduce((sum, val) => sum + val, 0);
 
   // Função pra definir cor com base no nome do curso
   const getCourseColor = (courseName) => {
@@ -85,7 +87,7 @@ export default function ChartDisplay({ dataType, chartType }) {
     labels,
     datasets: [
       {
-        label,
+        label: `Total de Inscritos: ${InscritosTotais}`,
         data: valores,
         backgroundColor:
           dataType === "cursos"
